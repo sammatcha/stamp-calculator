@@ -2,18 +2,18 @@
 const postageRates = {
     forever : {
         name: "Forever Stamp",
-        cost: 0.73
+        cost: 0.78
     },
     additional: {
         name: "Additional Ounce",
-        cost: 0.28
+        cost: 0.29
     },
     
     nonMachineable: {
         name: "Non-Machineable",
-        cost: 1.19
+        cost: 1.27
     },
-           limit: 3.5,
+    limit: 3.5,
 }
     
 

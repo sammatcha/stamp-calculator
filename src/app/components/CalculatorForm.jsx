@@ -28,9 +28,9 @@ export default function Form(){
     }
 
     return(
-        <form method= 'post' onSubmit={handleSubmit} className="w-full  max-w-sm mx-auto ">
+        <form method= 'post' onSubmit={handleSubmit} className="w-full px-20 mx-auto ">
             
-            <div className="flex flex-col w-full items-center justify-center space-y-6">
+            <div className="flex flex-col w-full items-center justify-center space-y-6 container ">
                 <label className='text-md lg:text-xl xl:text-2xl'>
                         Weight (oz)
                 
@@ -63,21 +63,21 @@ export default function Form(){
                     Enter
                   
                     </button>
-                        <div className='flex items-center justify-center'>
+                        <div className='flex items-center justify-center  '>
                         {results?.breakdown && (
                             results?.breakdown.map((item, index) => {
                                 const src = (() => {
                                  if(item.type === 'forever'){
-                                    return '/assets/standard-stamp.png'
+                                    return '/assets/standard-stamp-4.png'
                                     }else if(item.type === 'nonMachineable'){
-                                        return '/assets/non-machineable.svg'
+                                        return '/assets/non-machineable-4.png'
                                 }else{
-                                    return '/assets/add-oz.svg'
+                                    return '/assets/add-oz-4.png'
                                 }
                             })();
                                 return (
                                     Array.from({length: item.quantity}).map((_, i) => (
-                                    <img src={src} alt={item.type} key={`${index}-${i}`} className="aspect-[4/3] m-2" />
+                                    <img src={src} alt={item.type} key={`${index}-${i}`} className=" w-56 h-56 mx-2 object-contain bg-beige " />
                                 ))
                               
                         )})
