@@ -9,6 +9,8 @@ export default function Form(){
     const [results, setResults] = useState('');
     const [isChecked, setIsChecked ] = useState(false);
     const [showToolTip, setShowToolTip] = useState(false);
+   
+   const roundedTotal = Math.round(results.total *100)/ 100;
 
     function handleSubmit(e) {
     e.preventDefault(); // prevent refresh
@@ -85,7 +87,7 @@ export default function Form(){
                  
                     </div>
                         {results.total && (
-                            <p>total: ${results.total}</p>
+                            <p>total: ${roundedTotal}</p>
                          )}
                     </div>
             
