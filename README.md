@@ -1,1 +1,1 @@
-React + Tailwind Calculator for stamps
+# stamps calculator

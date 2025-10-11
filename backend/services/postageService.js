@@ -2,8 +2,6 @@ const axios = require('axios');
 const { getAuthToken } = require('../helpers/uspsHelper');
 require('dotenv').config();
 
-
-
 const letterSearch = async (weight, nonMachinable) => {
     try {
 
