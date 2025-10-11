@@ -1,9 +1,8 @@
 
 const postageService = require('../services/postageService');
 
-exports.letterSearch = async(formData) => {
+exports.letterSearch = async(weight, nonMachinable) => {
     try{
-        const{weight, nonMachinable} = formData;
         const search = await postageService.letterSearch(weight, nonMachinable);
        return search;
       

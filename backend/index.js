@@ -2,7 +2,7 @@ const express = require('express');
 //create an express app
 const app = express()
 //define port
-const port = 3000;
+const port = 3001;
 const cors = require ('cors');
 const routes = require('./routes/usps')
 
@@ -12,5 +12,4 @@ app.use(express.json())
 app.use('/api', routes)
 // app is listening to port
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
 })
