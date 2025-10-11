@@ -11,7 +11,7 @@ npm install
 2. Deploy locally
 
 ```sh
-node index.js
+node server.js
 ```
 
 ## testing
