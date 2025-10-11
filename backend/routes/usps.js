@@ -1,4 +1,4 @@
-const { calculatePostage } = require('../../app/utils/calculatePostage');
+const { calculatePostage } = require('../utils/calculatePostage');
 const postageController = require('../controllers/postageController');
 const express = require('express');
 const router = express.Router();

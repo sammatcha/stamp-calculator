@@ -16,7 +16,17 @@ node server.js
 
 ## testing
 
-Test api call using curl:
+1. healthz and readyz endpoints
+
+```sh
+curl localhost:3001/healthz
+# example output:
+# ok
+
+❯ curl localhost:3001/readyz
+# example output:
+# ready
+```
 
 ```sh
 curl -sS -X POST localhost:3001/api/postage \
