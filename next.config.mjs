@@ -1,10 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    output: "export",
+    output: 'export',
     images: {unoptimized:true},
-    basePath: '/stamp-calculator',
-    assetPrefix: '/stamp-calculator/',
-
+    basePath: '',
+    assetPrefix: '/stamp-calculator'
 };
 
 export default nextConfig;
