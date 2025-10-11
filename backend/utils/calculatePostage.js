@@ -1,8 +1,8 @@
 function calculatePostage(userInput, isChecked){
     const rates = {
-        forever:        { cost: 0.68 },
-        nonMachinable:  { cost: 1.06 },
-        additional:     { cost: 0.24 },
+        forever:        { cost: 0.78 },
+        nonMachinable:  { cost: 1.27 },
+        additional:     { cost: 0.29 },
     };
 
     const baseType = isChecked ? 'nonMachineable' : 'forever';
