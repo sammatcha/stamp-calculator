@@ -35,7 +35,7 @@ app.use((err, req, res, _next) => {
 
 // ---- Start & graceful shutdown ----
 const server = app.listen(PORT, () => {
-  console.log(`API listening on :${PORT}`);
+  console.log(`API listening on: ${PORT}`);
 });
 
 const shutdown = (sig) => () => {

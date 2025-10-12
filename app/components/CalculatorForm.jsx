@@ -3,7 +3,7 @@ import React from 'react';
 import { useState } from 'react';
 import { calculatePostage } from '../utils/calculatePostage';
 import { CircleQuestionMark } from 'lucide-react';
-
+import { basePath } from '../utils/config';
 
 export default function Form(){
     const [userInput, setUserInput] = useState("");
@@ -12,7 +12,7 @@ export default function Form(){
     const [showToolTip, setShowToolTip] = useState(false);
     const [meteredResult, setMeteredResult] = useState('');
     const roundedTotal = Math.round(results.total *100)/ 100;
-
+    
     async function handleSubmit(e) {
     e.preventDefault(); // prevent refresh
     const calculated =  calculatePostage(userInput, isChecked);
@@ -96,11 +96,11 @@ export default function Form(){
                             results?.breakdown.map((item, index) => {
                                 const src = (() => {
                                  if(item.type === 'forever'){
-                                    return '/assets/standard-stamp-4.png'
+                                    return `./assets/standard-stamp-4.png`
                                     }else if(item.type === 'nonMachineable'){
-                                        return '/assets/non-machineable-4.png'
+                                        return `./assets/non-machineable-4.png`
                                 }else{
-                                    return '/assets/add-oz-4.png'
+                                    return `./assets/add-oz-4.png`
                                 }
                             })();
                                 return (
