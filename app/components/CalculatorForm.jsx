@@ -18,7 +18,7 @@ export default function Form(){
     const calculated =  calculatePostage(userInput, isChecked);
 
     try{
-         const metered = await fetch('http://localhost:3001/api/postage', {
+         const metered = await fetch('https://usps.dangnas.cloud/api/postage', {
             method: "POST",
             headers : {
                 "Content-Type":"application/json"
