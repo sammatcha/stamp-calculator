@@ -17,7 +17,12 @@ app.disable('x-powered-by');
 app.use(helmet());                 // sensible security headers
 app.use(compression());            // gzip responses
 app.use(morgan('combined'));       // access logs (swap for pino-http for JSON)
-app.use(cors({ origin: ORIGIN })); // restrict CORS in prod
+app.use(cors({ 
+    origin: ORIGIN,
+    methods: ['GET', 'POST', 'OPTIONS'],
+    credentials: false
+
+ })); // restrict CORS in prod
 app.use(express.json({ limit: '1mb' })); // prevent huge bodies
 
 // ---- Routes ----
