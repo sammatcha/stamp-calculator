@@ -9,7 +9,7 @@ const app = express();
 
 // ---- Core prod settings ----
 const PORT = process.env.PORT || 3001;
-const ORIGIN = process.env.CORS_ORIGIN || 'https://your-frontend.example.com';
+const ORIGIN = process.env.CORS_ORIGIN || 'http://localhost:3000';
 app.set('env', process.env.NODE_ENV || 'production');
 app.disable('x-powered-by');
 
@@ -20,9 +20,13 @@ app.use(morgan('combined'));       // access logs (swap for pino-http for JSON)
 app.use(cors({ 
     origin: ORIGIN,
     methods: ['GET', 'POST', 'OPTIONS'],
-    credentials: false
+    optionsSuccessStatus:200,
+    // allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
 
  })); // restrict CORS in prod
+
+
 app.use(express.json({ limit: '1mb' })); // prevent huge bodies
 
 // ---- Routes ----
@@ -41,6 +45,7 @@ app.use((err, req, res, _next) => {
 // ---- Start & graceful shutdown ----
 const server = app.listen(PORT, () => {
   console.log(`API listening on: ${PORT}`);
+  console.log(`"cors origin:" ${ORIGIN}`)
 });
 
 const shutdown = (sig) => () => {
