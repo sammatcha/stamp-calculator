@@ -45,7 +45,7 @@ export default function Form(){
 
     const handleCheckboxChange = (e) => {
         setIsChecked(e.target.checked)
-        // console.log("ischecked", isChecked);
+     
     }
 
     function handleToolTipClick(e){
@@ -113,11 +113,11 @@ export default function Form(){
                  
             </div>
                         {results.total && (
-                            <p className='font-semibold text-amber-500'>Standard Total: ${roundedTotal}</p>
+                            <p className='font-semibold text-amber-500 text-lg'>Standard Total: ${roundedTotal}</p>
                          )}
 
                          {meteredResult?.metered?.totalBasePrice && (
-                            <p className='text-xl text-gray-700 dark:text-black'>Metered total price ${meteredResult.metered.totalBasePrice}</p>
+                            <p className='text-base text-gray-700 dark:text-black'>Metered total price ${meteredResult.metered.totalBasePrice}</p>
                          )}
               
           
