@@ -96,11 +96,11 @@ export default function Form(){
                             results?.breakdown.map((item, index) => {
                                 const src = (() => {
                                  if(item.type === 'forever'){
-                                    return `/assets/standard-stamp-4.png`
+                                    return `./assets/standard-stamp-4.png`
                                     }else if(item.type === 'nonMachineable'){
-                                        return `/assets/non-machineable-4.png`
+                                        return `./assets/non-machineable-4.png`
                                 }else{
-                                    return `/assets/add-oz-4.png`
+                                    return `./assets/add-oz-4.png`
                                 }
                             })();
                                 return (

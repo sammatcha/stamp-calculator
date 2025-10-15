@@ -6,7 +6,6 @@ const letterSearch = async (weight, nonMachinable) => {
     try {
 
         const token = await getAuthToken();
-        console.log('Token received:', token.substring(0, 20) + '...');
         
         const response = await axios.post('https://apis.usps.com/prices/v3/letter-rates/search', {
             weight:parseFloat(weight),
@@ -30,7 +29,6 @@ const letterSearch = async (weight, nonMachinable) => {
             }
         });
         
-        console.log('Response:', response.data);
         return response.data;
         
     } catch(error) {
