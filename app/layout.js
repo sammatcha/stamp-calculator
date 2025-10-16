@@ -1,4 +1,4 @@
-import { Caveat_Brush, Chewy, Geist, Geist_Mono, Nunito_Sans, Roboto_Mono } from "next/font/google";
+import { Bricolage_Grotesque, Caveat_Brush, Chewy, Geist, Geist_Mono, Manrope, Nunito_Sans, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -25,6 +25,16 @@ const robotoMono = Roboto_Mono({
   subsets: ["latin"],
   weight: ["400"]
  
+});
+const manRope = Manrope({
+  variable: "--font-manRope",
+  subsets: ["latin"]
+ 
+});
+const bricolageGrotesque = Bricolage_Grotesque({
+  variable: "--font-bricolageGrotesque",
+  subsets: ["latin"]
+ 
 })
 
 export const metadata = {
@@ -41,6 +51,8 @@ export default function RootLayout({ children }) {
     ${geistMono.variable} 
     ${nunitoSans.variable}
     ${caveatBrush.variable} 
+    ${manRope.variable} 
+    ${bricolageGrotesque.variable} 
     antialiased`}
       >
         {children}

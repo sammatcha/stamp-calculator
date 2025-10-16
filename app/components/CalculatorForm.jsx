@@ -54,44 +54,51 @@ export default function Form(){
     }
 
     return(
-        <form method= 'post' onSubmit={handleSubmit} className="min-w-full lg:px-20 mx-auto flex justify-center items-center relative z-10 flex-col container">
-           
-                <div className=" w-full flex flex-col  aspect-square dark:text-slate-700 border py-10 border-uspsBlue/20 bg-white/70 backdrop-blur-sm max-w-md ">
-                    <div className='flex flex-col justify-center items-center space-y-6'>
-                    <label className='text-md lg:text-3xl xl:text-4xl font-bold font-robotoMono mt-10 '>
-                        Weight (oz)
-                
-                    </label>
-                    <input className="rounded text-gray-500 px-1 w-64 bg-gray-400 dark:bg-gray-100 border-uspsBlue/60 border-2 placeholder-gray-400 " 
-                        name="userInput" 
-                        value={userInput}
-                        type='number'
-                        onChange ={(e)=> setUserInput(e.target.value)}
-                        placeholder="weight" 
-                    />
-                    <div className='items-center justify-center inline-flex space-x-3'>
-                       <input type='checkbox' checked={isChecked} onChange={handleCheckboxChange} className='cursor-pointer ' />
-                            Is envelope rigid or 1/4 inch thick
+        <form method= 'post' onSubmit={handleSubmit} className="w-full mx-auto flex justify-center items-center relative z-10 flex-col  ">
+               
+                    <div className="flex flex-col w-full max-w-md sm:max-w-xl lg:max-w-2xl 2xl:max-w-3xl dark:text-slate-700 border-transparent pb-20
+                    min-h-[400px] sm:min-h-[450px] lg:min-h-[550px] py-8 sm:py-10 lg:py-14 2xl:py-16 rounded shadow-xl bg-white/60 
+                    ">
                     
-                      
-                   <CircleQuestionMark className='cursor-help ml-1 w-4' onClick={(e) => {handleToolTipClick(e)}}/>
-
-                    {showToolTip && (
-                            <div className='md:absolute md:left-full flex text-slate-500 text-xs sm:text-md z-20 px-5'>
-                             If it feels thick, it might need a non-machineable
+                        <div className='flex flex-col justify-center items-center space-y-5 font-nunitoSans '>
+                            <label className='text-xl md:text-2xl lg:text-3xl font-bold sm:mt-10 '>
+                                Weight (oz)
+                
+                            </label>
+                            <input className="rounded w-2/3 sm:w-1/2 lg:w-2/5 text-gray-500 px-1 bg-gray-400 dark:bg-gray-100 border-uspsBlue/60 border-2 placeholder-gray-400 text-[14px] " 
+                            name="userInput" 
+                            value={userInput}
+                            type='number'
+                            onChange ={(e)=> setUserInput(e.target.value)}
+                            placeholder="weight" 
+                            />
+                            <div className='relative flex space-x-3 px-7 mb-20 '>
+                                <input type='checkbox' checked={isChecked} onChange={handleCheckboxChange} className='cursor-pointer ' />
+                                    Is envelope rigid or 1/4 inch thick?
+                    
+                            
+                                    <CircleQuestionMark className='cursor-help w-4 ml-1 md:ml-5' onClick={(e) => {handleToolTipClick(e)}}
+                                    />
+                                    {showToolTip && (
+                                        <div className='absolute top-full left-1/2 -translate-x-1/2 mt-2
+                                        md:left-full md:top-1/2 md:translate-x-2 md:-translate-y-1/2 md:mt-0 md:ml-6
+                                         text-sm px-3 md:px-5 bg-black text-white z-50 w-max max-w-[240px] rounded whitespace-normal text-center'>
+                                        If it feels thick, it might need a non-machineable
+                                        </div>
+                                    )}
+                              
+                                    
                             </div>
-                        )}
+                                
+                            <button type="submit" onClick={handleSubmit} 
+                            className="bg-white rounded text-slate-900
+                            cursor-pointer w-2/3 sm:w-1/2 lg:w-2/5 hover:bg-uspsBlue/90 border-uspsBlue border-2 hover:focus:ring-2 focus:ring-[#0071E3] hover:text-white font-bold">
+                                Enter
+                            </button>
+                        </div>      
                     </div>
-                       
-                    <button type="submit" onClick={handleSubmit} 
-                    className="bg-white rounded text-slate-900
-                       cursor-pointer w-64 hover:bg-uspsBlue/90 border-uspsBlue border-2 hover:focus:ring-2 focus:ring-[#0071E3] hover:text-white">
-                    Enter
-                    </button>
-                  </div>      
-                </div>
-            
-            <div className='flex items-center justify-center '>
+                                
+            <div className='flex items-center justify-center mt-5'>
                         {results?.breakdown && (
                             results?.breakdown.map((item, index) => {
                                 const src = (() => {
@@ -113,14 +120,16 @@ export default function Form(){
                  
             </div>
                         {results.total && (
-                            <p className='font-semibold text-amber-500 text-lg'>Standard Total: ${roundedTotal}</p>
+                            <p className=' text-amber-500 text-xl font-manRope'>Standard Total: ${roundedTotal}</p>
+                           
+                            
                          )}
 
                          {meteredResult?.metered?.totalBasePrice && (
-                            <p className='text-base text-gray-700 dark:text-black'>Metered total price ${meteredResult.metered.totalBasePrice}</p>
+                            <p className='text-sm text-gray-700 dark:text-black font-manRope'>Metered total price ${meteredResult.metered.totalBasePrice}</p>
                          )}
               
-          
+      
         </form>
            
         

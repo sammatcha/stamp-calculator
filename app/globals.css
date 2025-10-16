@@ -13,6 +13,8 @@
   --font-nunitoSans: var(--font-nunitoSans);
   --font-caveatBrush: var(--font-caveatBrush);
   --font-robotoMono: var(--font-robotoMono);
+  --font-manRope: var(--font-manRope);
+  --font-bricolageGrotesque: var(--font-bricolageGrotesque);
 
 }
 @theme {
