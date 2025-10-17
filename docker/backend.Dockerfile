@@ -7,7 +7,7 @@ WORKDIR /app
 FROM base AS deps
 COPY package*.json ./
 # If you have native addons: RUN apk add --no-cache python3 make g++
-RUN npm ci --omit=dev
+RUN npm install --omit=dev
 
 FROM base AS runtime
 # node user/group already exist in official images
