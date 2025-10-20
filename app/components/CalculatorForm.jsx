@@ -24,12 +24,12 @@ export default function Form(){
             headers : {
                 "Content-Type":"application/json"
             },
-     
-        body: JSON.stringify({
-            weight:userInput,
-            nonMachinable: isChecked
-         })
-    });
+            mode: "cors",
+            body: JSON.stringify({
+                weight:userInput,
+                nonMachinable: isChecked
+            })
+        });
         if(!metered.ok){
             throw new Error(`Response status:,${metered.status}`);
         }
