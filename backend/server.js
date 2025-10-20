@@ -7,6 +7,22 @@ const routes = require('./routes/usps');
 
 const app = express();
 
+const allowedOrigins = new Set([
+  'https://sammatcha.github.io',
+  'http://localhost:3000'
+]);
+
+let corsOptions = {
+  origin: function (origin, callback){
+    if (!origin || allowedOrigins.has(origin)) return callback(null,true);
+    return callback(new Error('Not allowed by CORS'));
+  },
+   methods: ['GET', 'POST', 'OPTIONS'],
+   optionsSuccessStatus:200,
+   credentials: false,
+   allowedHeaders: ['Content-Type', 'Authorization'],
+}
+
 // ---- Core prod settings ----
 const PORT = process.env.PORT || 3001;
 const ORIGIN = process.env.CORS_ORIGIN || 'http://localhost:3000';
@@ -17,15 +33,8 @@ app.disable('x-powered-by');
 app.use(helmet());                 // sensible security headers
 app.use(compression());            // gzip responses
 app.use(morgan('combined'));       // access logs (swap for pino-http for JSON)
-app.use(cors({ 
-    origin: ORIGIN,
-    methods: ['GET', 'POST', 'OPTIONS'],
-    optionsSuccessStatus:200,
-    // allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true
-
- })); // restrict CORS in prod
-
+app.use(cors(corsOptions)); // restrict CORS in prod
+app.options('*', cors(corsOptions));
 
 app.use(express.json({ limit: '1mb' })); // prevent huge bodies
 
@@ -45,7 +54,7 @@ app.use((err, req, res, _next) => {
 // ---- Start & graceful shutdown ----
 const server = app.listen(PORT, () => {
   console.log(`API listening on: ${PORT}`);
-  console.log(`"cors origin:" ${ORIGIN}`)
+  console.log(`cors allowed origin:`, [...allowedOrigins]);
 });
 
 const shutdown = (sig) => () => {

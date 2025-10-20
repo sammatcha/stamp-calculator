@@ -18,8 +18,7 @@ export default function Form(){
     const calculated =  calculatePostage(userInput, isChecked);
 
     try{
-        //  const metered = await fetch('https://stamp-calculator.onrender.com/api/postage', {
-        const metered = await fetch('https://usps-dev.dangnas.cloud/api/postage', {
+         const metered = await fetch('https://usps.dangnas.cloud/api/postage', {
             method: "POST",
             headers : {
                 "Content-Type":"application/json"
