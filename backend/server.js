@@ -35,7 +35,7 @@ app.disable('x-powered-by');
 // ---- Middleware ----
 // Apply CORS before other middleware to ensure preflight requests are handled
 app.use(cors(corsOptions));
-app.options('*', cors(corsOptions)); // Handle preflight requests
+app.options(/.*/, cors(corsOptions)); // Handle preflight requests
 
 app.use(helmet());                 // sensible security headers
 app.use(compression());            // gzip responses
