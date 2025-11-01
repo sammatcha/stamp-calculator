@@ -34,7 +34,7 @@ app.use(helmet());                 // sensible security headers
 app.use(compression());            // gzip responses
 app.use(morgan('combined'));       // access logs (swap for pino-http for JSON)
 app.use(cors(corsOptions)); // restrict CORS in prod
-app.options(/.'*'/, cors(corsOptions));
+app.options(/.*/, cors(corsOptions));
 
 app.use(express.json({ limit: '1mb' })); // prevent huge bodies
 
