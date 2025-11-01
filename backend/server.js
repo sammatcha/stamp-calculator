@@ -17,10 +17,13 @@ let corsOptions = {
     if (!origin || allowedOrigins.has(origin)) return callback(null,true);
     return callback(new Error('Not allowed by CORS'));
   },
-   methods: ['GET', 'POST', 'OPTIONS'],
-   optionsSuccessStatus:200,
-   credentials: false,
-   allowedHeaders: ['Content-Type', 'Authorization'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
+  exposedHeaders: ['Content-Length', 'X-Request-Id'],
+  credentials: false,
+  maxAge: 86400, // 24 hours
+  preflightContinue: false,
+  optionsSuccessStatus: 204
 }
 
 // ---- Core prod settings ----
@@ -30,11 +33,13 @@ app.set('env', process.env.NODE_ENV || 'production');
 app.disable('x-powered-by');
 
 // ---- Middleware ----
+// Apply CORS before other middleware to ensure preflight requests are handled
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); // Handle preflight requests
+
 app.use(helmet());                 // sensible security headers
 app.use(compression());            // gzip responses
 app.use(morgan('combined'));       // access logs (swap for pino-http for JSON)
-app.use(cors(corsOptions)); // restrict CORS in prod
-app.options(/.*/, cors(corsOptions));
 
 app.use(express.json({ limit: '1mb' })); // prevent huge bodies
 
