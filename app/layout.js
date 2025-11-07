@@ -44,7 +44,22 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" >
+    <html lang="en"  suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+            (function() {
+            const saved = localStorage.getItem('theme');
+            const system = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (saved === 'dark' || (!saved && system)){
+              document.documentElement.classList.add('dark');
+            }
+            })();
+            `,
+          }}
+        />
+      </head>
       <body
       className={`
     ${geistSans.variable} 

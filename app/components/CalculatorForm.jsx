@@ -53,25 +53,34 @@ export default function Form(){
     }
 
     return(
-        <form method= 'post' onSubmit={handleSubmit} className="w-full mx-auto flex justify-center items-center relative z-10 flex-col  ">
-               
-                    <div className="flex flex-col w-full max-w-md sm:max-w-xl lg:max-w-2xl 2xl:max-w-3xl dark:text-slate-700 border-transparent pb-20
-                    min-h-[400px] sm:min-h-[450px] lg:min-h-[550px] py-8 sm:py-10 lg:py-14 2xl:py-16 rounded shadow-xl bg-white/60 
+        <form method= 'post' onSubmit={handleSubmit} className="w-full mx-auto flex flex-col justify-center items-center relative z-10   ">
+            <div className='max-w-5xl flex flex-col lg:flex-row gap-8 w-full' >
+                    <div className="dark:bg-formBox1 dark:shadow-2xl dark:outline-outlineColor dark:outline-2 dark:outline-offset-2 flex flex-col max-w-md sm:max-w-xl lg:max-w-2xl 2xl:max-w-3xl dark:text-slate-700 dark:border-transparent pb-20
+                     rounded shadow-xl  bg-white/60 hover:shadow-lg dark:hover:shadow-indigo-600/50 w-1/2  border-gray-300 border 
                     ">
                     
-                        <div className='flex flex-col justify-center items-center space-y-5 font-nunitoSans '>
-                            <label className='text-xl md:text-2xl lg:text-3xl font-bold sm:mt-10 '>
-                                Weight (oz)
+                        <section className='flex flex-col justify-center items-center space-y-5 font-nunitoSans '>
+                            <label className='text-lg md:text-xl lg:text-2xl font-bold sm:mt-10 dark:text-white text-uspsBlue'>
+                               Letter Weight
                 
                             </label>
-                            <input className="rounded w-2/3 sm:w-1/2 lg:w-2/5 text-gray-500 px-1 bg-gray-400 dark:bg-gray-100 border-uspsBlue/60 border-2 placeholder-gray-400 text-[14px] " 
-                            name="userInput" 
-                            value={userInput}
-                            type='number'
-                            onChange ={(e)=> setUserInput(e.target.value)}
-                            placeholder="weight" 
-                            />
-                            <div className='relative flex space-x-3 px-7 mb-20 '>
+                                <div className='flex'>
+                                    <input className="bg-transparent border-b text-slate-800 placeholder-slate-500  dark:text-gray-500 px-1 dark:bg-duskyBlue border-uspsBlue/60 dark:placeholder-gray-400 text-center " 
+                                    name="userInput" 
+                                    value={userInput}
+                                    type='number'
+                                    onChange ={(e)=> setUserInput(e.target.value)}
+                                    style={{
+                                    fontSize:'20px',
+                                    fontWeight: 'bolder'
+                                    }}
+                                    placeholder="weight" 
+                                    />
+                                    <div >
+                                        <h2 className='text-2xl text-slate-800  dark:text-gray-500'>oz</h2>
+                                    </div>
+                                </div>
+                            <div className='relative flex space-x-3 px-7 text-slate-700  dark:text-white'>
                                 <input type='checkbox' checked={isChecked} onChange={handleCheckboxChange} className='cursor-pointer ' />
                                     Is envelope rigid or 1/4 inch thick?
                     
@@ -90,14 +99,14 @@ export default function Form(){
                             </div>
                                 
                             <button type="submit" onClick={handleSubmit} 
-                            className="bg-white rounded text-slate-900
-                            cursor-pointer w-2/3 sm:w-1/2 lg:w-2/5 hover:bg-uspsBlue/90 border-uspsBlue border-2 hover:focus:ring-2 focus:ring-[#0071E3] hover:text-white font-bold">
-                                Enter
+                            className="bg-uspsBlue rounded-lg text-white dark:text-white font-extrabold text-xl outline-white outline-offset-2 dark:bg-gradient-to-bl dark:from-vibrantBlue dark:to-80% dark:to-skyBlue
+                            cursor-pointer hover:bg-uspsBlue/90 border-white border-2 hover:focus:ring-2 focus:ring-[#0071E3] hover:text-white max-w-xl mx-auto px-5 py-2 ">
+                               Calculate Postage
                             </button>
-                        </div>      
+                        </section>      
                     </div>
-                                
-            <div className='flex items-center justify-center mt-5'>
+                <div className='flex flex-col items-center justify-evenly w-1/2 hover:shadow-lg bg-white/60 border-gray-300 border dark:bg-formBox1 dark:shadow-2xl dark:outline-outlineColor dark:outline-2 dark:outline-offset-2 dark:border-transparent rounded shadow-xl space-y-5 dark:hover:shadow-indigo-600/50'>      
+                    <div className='mt-5 flex border-b'>
                         {results?.breakdown && (
                             results?.breakdown.map((item, index) => {
                                 const src = (() => {
@@ -117,21 +126,32 @@ export default function Form(){
                                 )})
                         )}
                  
-            </div>
-                        {results.total && (
-                            <p className=' text-amber-500 text-xl font-manRope'>Standard Total: ${roundedTotal}</p>
-                           
-                            
-                         )}
+                    </div>
 
-                         {meteredResult?.metered?.totalBasePrice && (
-                            <p className='text-sm text-gray-700 dark:text-black font-manRope'>Metered total price ${meteredResult.metered.totalBasePrice}</p>
-                         )}
-              
-      
+                    <div className='space-y-3 text-center md:pb-10 max-w-lg mx-auto '>
+                    {results.total ? (
+                        <>
+                            <div className='border py-1 rounded dark:bg-gradient-to-bl dark:from-vibrantBlue dark:to-80% dark:to-skyBlue w-full px-10 md:px-15 bg-uspsBlue'>
+                                <p className=' text-white text-base md:text-lg font-nunitoSans flex flex-col font-bold'>Standard Total <span className='text-lg md:text-2xl font-extrabold'>${roundedTotal}</span></p>
+                            </div>
+                            <div className='border py-1 rounded dark:bg-formBox1 w-full bg-uspsBlue '>
+                                {meteredResult?.metered?.totalBasePrice && ( 
+                                    <p className='text-base text-slate-200 dark:text-gray-400 font-nunitoSans flex flex-col font-bold'>Metered Price <span className='text-slate-200 dark:text-neutral-300 font-extrabold'>${meteredResult.metered.totalBasePrice}</span></p>
+                                )}
+                            </div>
+                        </>
+                        ):(
+                            <div className='flex items-center w-full text-uspsBlue dark:text-slate-200' >
+                                <p className='flex justify-center items-center'>Enter weight to calculate postage</p>
+                            </div>
+                        )}
+                    </div>
+
+                </div>  
+            </div>
         </form>
-           
-        
     )
 }
 
+
+// w-2/3 sm:w-1/2 lg:w-2/5
