@@ -2,11 +2,7 @@ services:
   web:
     image: stampcalc:0.1.2
     ports:
-      - "32916:32916"
-    environment:
-      NODE_ENV: production
-      PORT: ${PORT}
-      CORS_ORIGIN: ${CORS_ORIGIN}
-      USPS_SECRET: ${USPS_SECRET}
-      USPS_CLIENT_ID: ${USPS_CLIENT_ID}
+      - "${PORT}: ${PORT}"
+    env_file:
+    - .env
     restart: always
