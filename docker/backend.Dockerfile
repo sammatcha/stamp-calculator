@@ -16,14 +16,17 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY --chown=node:node backend/ ./
 
-ENV PORT=32916
-EXPOSE 32916
+# ENV PORT=32916
+# EXPOSE 32916
 
 # Optional healthcheck (needs curl)
 USER root
 RUN apk add --no-cache curl
 USER node
-HEALTHCHECK --interval=30s --timeout=3s --start-period=10s CMD curl -fsS http://localhost:32916/healthz || exit 1
+
+ARG PORT
+EXPOSE ${PORT}
+HEALTHCHECK --interval=30s --timeout=3s --start-period=10s CMD curl -fsS http://localhost:${PORT}/healthz || exit 1
 
 
 CMD ["node","server.js"]
