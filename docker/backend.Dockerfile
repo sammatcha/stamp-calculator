@@ -24,7 +24,6 @@ USER root
 RUN apk add --no-cache curl
 USER node
 
-ARG PORT
 EXPOSE ${PORT}
 HEALTHCHECK --interval=30s --timeout=3s --start-period=10s CMD curl -fsS http://localhost:${PORT}/healthz || exit 1
 
