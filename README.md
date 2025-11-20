@@ -20,12 +20,20 @@ npm run dev
 `
 
 ## Docker
-Build Image <br>
-`
-docker build -t <container-name> .
-`
+Docker and Docker Compose
+- This is done in my project
+```
+# Build and Run
+docker compose up -d --build
 
-Run Container <br>
+# View logs
+docker compose logs -f web
+
+# Stop Container
+docker compose down
+```
+
+Check status of running containers<br>
 `
-docker run -d -p 8080:8080 <container-name>
+docker ps
 `
