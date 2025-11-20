@@ -8,7 +8,7 @@ const routes = require('./routes/usps');
 const app = express();
 
 const allowedOrigins = new Set([
-  'https://sammatcha.github.io',
+  process.env.CORS_ORIGIN,
   'http://localhost:3000'
 ]);
 
