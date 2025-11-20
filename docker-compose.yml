@@ -2,12 +2,10 @@ services:
   web:
     build:
       context: .
-      dockerfile: docker/backend.dockerfile
-      args:
-        - PORT=${PORT}
-      container_name: stampcalc
-    ports:
-      - "${PORT}:${PORT}"
+      dockerfile: docker/backend.Dockerfile
+    container_name: stampcalc
     env_file:
     - .env
+    ports:
+      - "${PORT}:${PORT}"
     restart: unless-stopped
