@@ -2,7 +2,7 @@ services:
   web:
     image: stampcalc:0.1.2
     ports:
-      - "${PORT}: ${PORT}"
+      - 32916:32916
     env_file:
     - .env
     restart: always
