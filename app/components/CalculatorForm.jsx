@@ -64,33 +64,29 @@ export default function Form(){
 
     return(
         <form method= 'post' onSubmit={handleSubmit} className="w-full mx-auto flex flex-col justify-center items-center relative z-10   ">
-            <div className='max-w-5xl flex flex-col lg:flex-row gap-8 w-full items-center md:items-stretch  ' >
+            <div className='max-w-5xl flex flex-col lg:flex-row gap-4 md:gap-6 lg:gap-8 w-full items-center md:items-stretch  ' >
                     <div className="dark:bg-formBox1 dark:shadow-2xl dark:outline-outlineColor dark:outline-2 dark:outline-offset-2 flex flex-col max-w-md sm:max-w-xl lg:max-w-2xl 2xl:max-w-3xl dark:text-slate-700 dark:border-transparent pb-20
-                     rounded shadow-xl  bg-white/60 hover:shadow-lg dark:hover:shadow-indigo-600/50 w-1/2  border-gray-300 border 
+                     rounded shadow-xl  bg-white/60 hover:shadow-lg dark:hover:shadow-indigo-600/50 w-full lg:w-1/2  border-gray-300 border 
                     ">
                     
                         <section className='flex flex-col justify-center items-center space-y-5 font-nunitoSans '>
-                            <label className='text-lg md:text-xl lg:text-2xl font-bold sm:mt-10 dark:text-white text-uspsBlue'>
+                            <label className='text-lg md:text-xl lg:text-2xl font-bold mt-4 sm:mt-10 dark:text-white text-uspsBlue'>
                                Letter Weight
                 
                             </label>
                                 <div className='flex'>
-                                    <input className="bg-transparent border-b text-slate-800 placeholder-slate-500  dark:text-gray-500 px-1 dark:bg-duskyBlue border-uspsBlue/60 dark:placeholder-gray-400 text-center " 
+                                    <input className="text-lg md:text-xl lg:text-2xl bg-transparent border-b text-slate-800 placeholder-slate-500  dark:text-gray-500 px-1 dark:bg-duskyBlue border-uspsBlue/60 dark:placeholder-gray-400 text-center " 
                                     name="userInput" 
                                     value={userInput}
                                     type='number'
                                     onChange ={(e)=> setUserInput(e.target.value)}
-                                    style={{
-                                    fontSize:'20px',
-                                    fontWeight: 'bolder'
-                                    }}
                                     placeholder="weight" 
                                     />
                                     <div >
-                                        <h2 className='text-2xl text-slate-800  dark:text-gray-500'>oz</h2>
+                                        <h2 className='text-xl md:text-2xl text-slate-800  dark:text-gray-500'>oz</h2>
                                     </div>
                                 </div>
-                            <div className='relative flex space-x-3 px-7 text-slate-700  dark:text-white'>
+                            <div className='relative flex space-x-3 px-3 md:px-7 text-slate-700  dark:text-white'>
                                 <input type='checkbox' checked={isChecked} onChange={handleCheckboxChange} className='cursor-pointer ' />
                                     Is envelope rigid or 1/4 inch thick?
                     
@@ -109,13 +105,13 @@ export default function Form(){
                             </div>
                                 
                             <button type="submit" onClick={handleSubmit} 
-                            className="bg-uspsBlue rounded-lg text-white dark:text-white font-extrabold text-xl outline-white outline-offset-2 dark:bg-gradient-to-bl dark:from-vibrantBlue dark:to-80% dark:to-skyBlue
-                            cursor-pointer hover:bg-uspsBlue/90 border-white border-2 hover:focus:ring-2 focus:ring-[#0071E3] hover:text-white max-w-xl mx-auto px-5 py-2 ">
+                            className="bg-uspsBlue rounded-lg text-white dark:text-white font-extrabold text-lg lg:text-xl outline-white outline-offset-2 dark:bg-gradient-to-bl dark:from-vibrantBlue dark:to-80% dark:to-skyBlue
+                            cursor-pointer hover:bg-uspsBlue/90 border-white border-2 hover:focus:ring-2 focus:ring-[#0071E3] hover:text-white max-w-xl mx-auto px-2 py-2 lg:px-5 lg:py-2 ">
                                Calculate Postage
                             </button>
                         </section>      
                     </div>
-                <div className='flex flex-col items-center justify-evenly w-1/2 hover:shadow-lg bg-white/60 border-gray-300 border dark:bg-formBox1 dark:shadow-2xl dark:outline-outlineColor dark:outline-2 dark:outline-offset-2 dark:border-transparent rounded shadow-xl space-y-5 dark:hover:shadow-indigo-600/50'>      
+                <div className='flex flex-col items-center justify-evenly w-full lg:w-1/2 hover:shadow-lg bg-white/60 border-gray-300 border dark:bg-formBox1 dark:shadow-2xl dark:outline-outlineColor dark:outline-2 dark:outline-offset-2 dark:border-transparent rounded shadow-xl space-y-5 dark:hover:shadow-indigo-600/50'>      
                     <div className='mt-5 flex border-b'>
                         {results?.breakdown && (
                             results?.breakdown.map((item, index) => {
@@ -149,12 +145,12 @@ export default function Form(){
                            
                               results.total ? (
                              <div>
-                                <div className=' border py-1 rounded dark:bg-gradient-to-bl dark:from-vibrantBlue dark:to-80% dark:to-skyBlue w-full px-10 md:px-15 bg-uspsBlue '>
+                                <div className=' border rounded dark:bg-gradient-to-bl dark:from-vibrantBlue dark:to-80% dark:to-skyBlue w-full px-4 py-2 md:px-15 md:py-1 bg-uspsBlue '>
                                     <p className=' text-white text-base md:text-lg font-nunitoSans flex flex-col font-bold'>Standard Total <span className='text-lg md:text-2xl font-extrabold'>${roundedTotal}</span></p>
                                 </div>
                                 <div className='border py-1 rounded dark:bg-formBox1 w-full bg-uspsBlue '>
                                     {meteredResult?.metered?.totalBasePrice && ( 
-                                        <p className='text-base text-slate-200 dark:text-gray-400 font-nunitoSans flex flex-col font-bold'>Metered Price <span className='text-slate-200 dark:text-neutral-300 font-extrabold'>${meteredResult.metered.totalBasePrice}</span></p>
+                                        <p className='text-base text-slate-200 font-nunitoSans flex flex-col font-bold dark:bg-gradient-to-bl dark:from-vibrantBlue dark:to-80% dark:to-skyBlue dark:text-white'>Metered Price <span className='text-slate-200 dark:text-white font-extrabold'>${meteredResult.metered.totalBasePrice}</span></p>
                                     )}
                                 </div>
                             </div>

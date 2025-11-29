@@ -5,7 +5,7 @@ import { calculatePostage } from "./utils/calculatePostage";
 export default function MainPage(){
  
   return(
-    <div className="min-w-screen min-h-screen relative flex flex-col p-10 xl:p-20 bg-gradient-to-b from-[#F7F9FC] to-[#E3E9F3] dark:bg-gradient-to-br dark:from-midnightIndigo dark:to-skyBlue">
+    <div className="min-w-screen min-h-screen relative flex flex-col p-4 md:p-10 lg:p-20 bg-gradient-to-b from-[#F7F9FC] to-[#E3E9F3] dark:bg-gradient-to-br dark:from-midnightIndigo dark:to-skyBlue">
       <div className="flex justify-end">
         <ThemeToggle/>
       </div>
