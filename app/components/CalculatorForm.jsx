@@ -20,7 +20,7 @@ export default function Form(){
         if (typeof calculated === 'string'){
             setError(calculated)
             setResults('')
-             console.log("error", calculated)
+            //  console.log("error", calculated)
             return;
            
         }
@@ -34,18 +34,20 @@ export default function Form(){
                 "Content-Type":"application/json"
             },
             body: JSON.stringify({
-                weight:userInput,
+                weight: parseFloat(userInput),
                 nonMachinable: isChecked
             })
         });
         if(!metered.ok){
-            throw new Error(`Response status:,${metered.status}`);
+            const errorData = await metered.json().catch(() => ({ message: `Server error: ${metered.status}` }));
+            throw new Error(errorData.message || errorData.error || `Response status: ${metered.status}`);
         }
         const data = await metered.json();
         
         setMeteredResult(data);
     }catch(error) {
         console.error('API call failed:', error);
+        setMeteredResult({ error: error.message || 'Failed to fetch metered pricing from USPS API' });
     }
    
     
@@ -149,9 +151,11 @@ export default function Form(){
                                     <p className=' text-white text-base md:text-lg font-nunitoSans flex flex-col font-bold'>Standard Total <span className='text-lg md:text-2xl font-extrabold'>${roundedTotal}</span></p>
                                 </div>
                                 <div className='border py-1 rounded dark:bg-formBox1 w-full bg-uspsBlue '>
-                                    {meteredResult?.metered?.totalBasePrice && ( 
+                                    {meteredResult?.error ? (
+                                        <p className='text-base text-red-300 font-nunitoSans flex flex-col font-bold dark:text-red-400'>Metered Price <span className='text-sm font-normal'>{meteredResult.error}</span></p>
+                                    ) : meteredResult?.metered?.totalBasePrice ? (
                                         <p className='text-base text-slate-200 font-nunitoSans flex flex-col font-bold dark:bg-gradient-to-bl dark:from-vibrantBlue dark:to-80% dark:to-skyBlue dark:text-white'>Metered Price <span className='text-slate-200 dark:text-white font-extrabold'>${meteredResult.metered.totalBasePrice}</span></p>
-                                    )}
+                                    ) : null}
                                 </div>
                             </div>
                             ):(
