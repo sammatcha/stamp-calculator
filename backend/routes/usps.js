@@ -10,7 +10,13 @@ router.post('/postage', async function(req,res) {
         const hard = calculatePostage(weight, nonMachinable);
         return res.json({hardcoded:hard, metered:result});
     } catch(error) {
-        res.status(500).send(`postage controller is not working ${error.message}`);
+        console.error('Postage API error:', error);
+        const errorMessage = error.response?.data || error.message || 'Unknown error';
+        res.status(500).json({ 
+            error: 'postage controller is not working', 
+            message: errorMessage,
+            details: error.response?.data || error.stack
+        });
     }
 });
 
