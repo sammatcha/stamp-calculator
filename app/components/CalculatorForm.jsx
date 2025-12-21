@@ -7,11 +7,11 @@ import { basePath } from '../utils/config';
 
 export default function Form(){
     const [userInput, setUserInput] = useState("");
-    const [results, setResults] = useState('');
+    const [results, setResults] = useState("");
     const [isChecked, setIsChecked ] = useState(false);
     const [showToolTip, setShowToolTip] = useState(false);
     const [meteredResult, setMeteredResult] = useState('');
-    const roundedTotal = Math.round(results.total *100)/ 100;
+    const roundedTotal = Math.round(results.total * 100) / 100
     const [error,setError] = useState(false);
 
     async function handleSubmit(e) {
@@ -38,10 +38,10 @@ export default function Form(){
                 nonMachinable: isChecked
             })
         });
-        if(!metered.ok){
-            const errorData = await metered.json().catch(() => ({ message: `Server error: ${metered.status}` }));
-            throw new Error(errorData.message || errorData.error || `Response status: ${metered.status}`);
-        }
+        // if(!metered.ok){
+        //     const errorData = await metered.json().catch(() => ({ message: `Server error: ${metered.status}` }));
+        //     throw new Error(errorData.message || errorData.error || `Response status: ${metered.status}`);
+        // }
         const data = await metered.json();
         
         setMeteredResult(data);

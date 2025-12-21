@@ -9,15 +9,15 @@ const postageRates = {
         cost: 0.29
     },
     
-    nonMachineable: {
-        name: "Non-Machineable",
+    nonMachinable: {
+        name: "Non-Machinable",
         cost: 1.27
     },
     limit: 3.5,
 }
 
 export function calculatePostage(userInput, isChecked){
-    const baseType = isChecked ? 'nonMachineable' : 'forever';
+    const baseType = isChecked ? 'nonMachinable' : 'forever';
     const breakdown = [];
     
     let total = 0
@@ -46,7 +46,13 @@ export function calculatePostage(userInput, isChecked){
     }
 
     breakdown.forEach((item) => {
+     
+     
+    // if (!postageRates[item.type]) {
+    //     throw new Error(`Invalid postage rate type: ${item.type}. Available types: ${Object.keys(rates).join(', ')}`);
+    // }
         total += postageRates[item.type].cost * item.quantity;
+       
     })
     
     return {breakdown:breakdown, 
