@@ -46,13 +46,7 @@ export function calculatePostage(userInput, isChecked){
     }
 
     breakdown.forEach((item) => {
-     
-     
-    // if (!postageRates[item.type]) {
-    //     throw new Error(`Invalid postage rate type: ${item.type}. Available types: ${Object.keys(rates).join(', ')}`);
-    // }
-        total += postageRates[item.type].cost * item.quantity;
-       
+        total += postageRates[item.type].cost * item.quantity;   
     })
     
     return {breakdown:breakdown, 

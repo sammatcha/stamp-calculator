@@ -38,19 +38,13 @@ export default function Form(){
                 nonMachinable: isChecked
             })
         });
-        // if(!metered.ok){
-        //     const errorData = await metered.json().catch(() => ({ message: `Server error: ${metered.status}` }));
-        //     throw new Error(errorData.message || errorData.error || `Response status: ${metered.status}`);
-        // }
         const data = await metered.json();
-        
         setMeteredResult(data);
     }catch(error) {
         console.error('API call failed:', error);
         setMeteredResult({ error: error.message || 'Failed to fetch metered pricing from USPS API' });
     }
    
-    
      setResults(calculated); 
     } 
 
@@ -68,8 +62,7 @@ export default function Form(){
         <form method= 'post' onSubmit={handleSubmit} className="w-full mx-auto flex flex-col justify-center items-center relative z-10   ">
             <div className='max-w-5xl flex flex-col lg:flex-row gap-4 md:gap-6 lg:gap-8 w-full items-center md:items-stretch  ' >
                     <div className="dark:bg-formBox1 dark:shadow-2xl dark:outline-outlineColor dark:outline-2 dark:outline-offset-2 flex flex-col max-w-md sm:max-w-xl lg:max-w-2xl 2xl:max-w-3xl dark:text-slate-700 dark:border-transparent pb-20
-                     rounded shadow-xl  bg-white/60 hover:shadow-lg dark:hover:shadow-indigo-600/50 w-full lg:w-1/2  border-gray-300 border 
-                    ">
+                     rounded shadow-xl  bg-white/60 hover:shadow-lg dark:hover:shadow-indigo-600/50 w-full lg:w-1/2  border-gray-300 border ">
                     
                         <section className='flex flex-col justify-center items-center space-y-5 font-nunitoSans '>
                             <label className='text-lg md:text-xl lg:text-2xl font-bold mt-4 sm:mt-10 dark:text-white text-uspsBlue'>
@@ -102,8 +95,6 @@ export default function Form(){
                                         If it feels thick, it might need a non-machineable
                                         </div>
                                     )}
-                              
-                                    
                             </div>
                                 
                             <button type="submit" onClick={handleSubmit} 
@@ -163,8 +154,6 @@ export default function Form(){
                                     <p className='flex justify-center items-center'>Enter weight to calculate postage</p>
                                 </div> 
                             )
-                            
-                        
                         )}
                     </div>
 

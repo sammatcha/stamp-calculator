@@ -4,9 +4,7 @@ require('dotenv').config();
 
 const letterSearch = async (weight, nonMachinable) => {
     try {
-
         const token = await getAuthToken();
-        
         const response = await axios.post('https://apis.usps.com/prices/v3/letter-rates/search', {
             weight:parseFloat(weight),
             nonMachinableIndicators: {
@@ -32,7 +30,6 @@ const letterSearch = async (weight, nonMachinable) => {
         return response.data;
         
     } catch(error) {
-        console.error('USPS API error:', error.response?.data || error.message);
         // Re-throw with more context
         if (error.response) {
             throw new Error(`USPS API error: ${error.response.status} - ${JSON.stringify(error.response.data)}`);
