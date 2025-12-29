@@ -111,8 +111,8 @@ export default function Form(){
                                 const src = (() => {
                                  if(item.type === 'forever'){
                                     return `./assets/standard-stamp-4.png`
-                                    }else if(item.type === 'nonMachineable'){
-                                        return `./assets/non-machineable-4.png`
+                                    }else if(item.type === 'nonMachinable'){
+                                        return `./assets/non-machinable-4.png`
                                 }else{
                                     return `./assets/add-oz-4.png`
                                 }
