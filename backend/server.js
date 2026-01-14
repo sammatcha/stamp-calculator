@@ -4,7 +4,7 @@ const compression = require('compression');
 const cors = require('cors');
 const morgan = require('morgan');
 const routes = require('./routes/usps');
-
+const postageController = require('./controllers/postageController');
 const app = express();
 
 const allowedOrigins = new Set([
@@ -53,7 +53,9 @@ app.get('/health/usps', async (_req, res) => {
     await postageController.letterSearch(1, true);
     return res.status(200).send('healthy');
   }catch(err){
+    console.error('Health check error:', err);
     return res.status(500).send('unhealthy');
+
 };
 })
 app.get('/readyz', (_req, res) => res.status(200).send('ready'));
