@@ -48,6 +48,14 @@ app.use('/api', routes);
 
 // Simple health endpoints (for load balancer / k8s)
 app.get('/healthz', (_req, res) => res.status(200).send('ok'));
+app.get('/health/usps', async (_req, res) => {
+  try{
+    await postageController.letterSearch(1, true);
+    return res.status(200).send('healthy');
+  }catch(err){
+    return res.status(500).send('unhealthy');
+};
+})
 app.get('/readyz', (_req, res) => res.status(200).send('ready'));
 
 // ---- Error handling ----
