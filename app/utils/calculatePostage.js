@@ -1,20 +1,5 @@
 
-const postageRates = {
-    forever : {
-        name: "Forever Stamp",
-        cost: 0.78
-    },
-    additional: {
-        name: "Additional Ounce",
-        cost: 0.29
-    },
-    
-    nonMachinable: {
-        name: "Non-Machinable",
-        cost: 1.27
-    },
-    limit: 3.5,
-}
+import { postageRates} from "../../lib/pricing";
 
 export function calculatePostage(userInput, isChecked){
     const baseType = isChecked ? 'nonMachinable' : 'forever';
