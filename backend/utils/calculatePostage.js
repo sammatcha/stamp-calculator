@@ -1,11 +1,7 @@
-function calculatePostage(userInput, isChecked){
-    const rates = {
-        forever:        { cost: 0.78 },
-        nonMachinable:  { cost: 1.27 },
-        additional:     { cost: 0.29 },
-        limit: 3.5,
-    };
+import { postageRates } from "../../lib/pricing";
 
+function calculatePostage(userInput, isChecked){
+   
     const baseType = isChecked ? 'nonMachinable' : 'forever';
     const breakdown = [];
     
@@ -15,7 +11,7 @@ function calculatePostage(userInput, isChecked){
         return "Please enter valid weight";
     }
 
-    if (userInput > rates.limit ){
+    if (userInput > postageRates.limit ){
         return "Weight exceeds maximum limit of 3.5 oz";
     }
 
@@ -34,7 +30,7 @@ function calculatePostage(userInput, isChecked){
     }
 
     breakdown.forEach((item) => {
-        total += rates[item.type].cost * item.quantity;
+        total += postageRates[item.type].cost * item.quantity;
     })
     
     return { breakdown:breakdown,total: total }
