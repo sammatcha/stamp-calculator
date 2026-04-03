@@ -104,7 +104,7 @@ export default function Form(){
                             </button>
                         </section>      
                     </div>
-                <div className='flex flex-col items-center justify-evenly w-full lg:w-1/2 hover:shadow-lg bg-white/60 border-gray-300 border dark:bg-formBox1 dark:shadow-2xl dark:outline-outlineColor dark:outline-2 dark:outline-offset-2 dark:border-transparent rounded shadow-xl space-y-5 dark:hover:shadow-indigo-600/50'>      
+                <div className='flex flex-col items-center justify-start w-full lg:w-1/2 hover:shadow-lg bg-white/60 border-gray-300 border dark:bg-formBox1 dark:shadow-2xl dark:outline-outlineColor dark:outline-2 dark:outline-offset-2 dark:border-transparent rounded shadow-xl space-y-5 dark:hover:shadow-indigo-600/50'>      
                     <div className='mt-5 flex border-b'>
                         {results?.breakdown && (
                             results?.breakdown.map((item, index) => {
@@ -127,7 +127,7 @@ export default function Form(){
                  
                     </div>
 
-                    <div className='space-y-3 text-center md:pb-10 max-w-lg mx-auto h-full items-center justify-center flex '>
+                    <div className='space-y-3 text-center pb-6 md:pb-8 max-w-lg mx-auto items-center flex '>
                         {error ? (
                             <div className='flex flex-col text-red-800 dark:text-red-400 text-center items-center justify-center text-lg lg:text-xl '><span className='inline-flex items-center justify-center mb-5'>
                                 <XIcon className='w-15 '/> Error
@@ -137,15 +137,22 @@ export default function Form(){
                         ) : (
                            
                               results.total ? (
-                             <div>
+                             <div className='flex flex-col gap-2'>
                                 <div className=' border rounded dark:bg-gradient-to-bl dark:from-vibrantBlue dark:to-80% dark:to-skyBlue w-full px-4 py-2 md:px-15 md:py-1 bg-uspsBlue '>
                                     <p className=' text-white text-base md:text-lg font-nunitoSans flex flex-col font-bold'>Standard Total <span className='text-lg md:text-2xl font-extrabold'>${roundedTotal}</span></p>
                                 </div>
-                                <div className='border py-1 rounded dark:bg-formBox1 w-full bg-uspsBlue '>
+                                <div
+                                    className={
+                                        'border rounded w-full bg-uspsBlue px-4 py-2 md:px-15 md:py-1 ' +
+                                        (meteredResult?.metered?.totalBasePrice && !meteredResult?.error
+                                            ? 'dark:bg-gradient-to-bl dark:from-vibrantBlue dark:to-80% dark:to-skyBlue'
+                                            : 'dark:bg-formBox1')
+                                    }
+                                >
                                     {meteredResult?.error ? (
                                         <p className='text-base text-red-300 font-nunitoSans flex flex-col font-bold dark:text-red-400'>Metered Price <span className='text-sm font-normal'>{meteredResult.error}</span></p>
                                     ) : meteredResult?.metered?.totalBasePrice ? (
-                                        <p className='text-base text-slate-200 font-nunitoSans flex flex-col font-bold dark:bg-gradient-to-bl dark:from-vibrantBlue dark:to-80% dark:to-skyBlue dark:text-white'>Metered Price <span className='text-slate-200 dark:text-white font-extrabold'>${meteredResult.metered.totalBasePrice}</span></p>
+                                        <p className='text-base text-slate-200 font-nunitoSans flex flex-col font-bold dark:text-white'>Metered Price <span className='text-slate-200 dark:text-white font-extrabold'>${meteredResult.metered.totalBasePrice}</span></p>
                                     ) : null}
                                 </div>
                             </div>
