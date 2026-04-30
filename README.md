@@ -7,7 +7,7 @@ Node.js · Express · Docker · NGINX · USPS Postal API · Prometheus · Grafan
 ## Features
 - Calculate postage by envelope weight
 - Compare retail stamp pricing with USPS metered pricing
-- Application monitoring with Prometheus and Grafana
+- Application monitoring with Prometheus and Grafana and alerting via Discord
 - Containerized with Docker and Docker Compose
 
 ## Deployment
