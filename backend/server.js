@@ -2,10 +2,13 @@ const express = require('express');
 const helmet = require('helmet');
 const compression = require('compression');
 const cors = require('cors');
-const morgan = require('morgan');
 const routes = require('./routes/usps');
 const postageController = require('./controllers/postageController');
+const pinoHttp = require('pino-http');
+
 const app = express();
+
+
 
 const allowedOrigins = new Set([
   process.env.CORS_ORIGIN,
@@ -39,7 +42,7 @@ app.options(/.*/, cors(corsOptions)); // Handle preflight requests
 
 app.use(helmet());                 // sensible security headers
 app.use(compression());            // gzip responses
-app.use(morgan('combined'));       // access logs (swap for pino-http for JSON)
+app.use(pinoHttp())        
 
 app.use(express.json({ limit: '1mb' })); // prevent huge bodies
 
@@ -68,12 +71,12 @@ app.use((err, req, res, _next) => {
 
 // ---- Start & graceful shutdown ----
 const server = app.listen(PORT, '0.0.0.0', () => {
-  console.log(`API listening on: ${PORT}`);
-  console.log(`cors allowed origin:`, [...allowedOrigins]);
+  // console.log(`API listening on: ${PORT}`);
+  // console.log(`cors allowed origin:`, [...allowedOrigins]);
 });
 
 const shutdown = (sig) => () => {
-  console.log(`\n${sig} received, shutting down...`);
+  // console.log(`\n${sig} received, shutting down...`);
   server.close(() => process.exit(0));
   setTimeout(() => process.exit(1), 10000); // hard timeout
 };
