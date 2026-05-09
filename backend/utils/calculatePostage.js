@@ -1,4 +1,4 @@
-const { postageRates } from "../../lib/pricing";
+const { postageRates } = require ("../lib/pricing");
 
 function calculatePostage(userInput, isChecked){
    
