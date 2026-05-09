@@ -1,4 +1,4 @@
-import { postageRates } from "../../lib/pricing";
+const { postageRates } from "../../lib/pricing";
 
 function calculatePostage(userInput, isChecked){
    
