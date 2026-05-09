@@ -10,5 +10,4 @@ exports.letterSearch = async(weight, nonMachinable) => {
     {
         throw error;
     }
-//    trigger redeploy
 }
