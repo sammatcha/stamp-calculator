@@ -4,7 +4,7 @@ const compression = require('compression');
 const cors = require('cors');
 const routes = require('./routes/usps');
 const postageController = require('./controllers/postageController');
-const pinoHttp = require('pino-http');
+// const pinoHttp = require('pino-http');
 
 const app = express();
 
@@ -42,7 +42,7 @@ app.options(/.*/, cors(corsOptions)); // Handle preflight requests
 
 app.use(helmet());                 // sensible security headers
 app.use(compression());            // gzip responses
-app.use(pinoHttp())        
+// app.use(pinoHttp())        
 
 app.use(express.json({ limit: '1mb' })); // prevent huge bodies
 
