@@ -2,7 +2,9 @@ name: Deploy Next.js to GitHub Pages
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "testing" ]
+  pull_request:
+    branches: [ "testing", "main" ]
 
 permissions:
   contents: write
