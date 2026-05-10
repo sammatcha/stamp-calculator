@@ -1,41 +1,26 @@
-name: Deploy Next.js to GitHub Pages
-
+name: Publish Image to Docker Hub
 on:
   push:
-    branches: [ "main" ]
-
-permissions:
-  contents: write
-  pages: write
-  id-token: write
+    branches: ["main"]
 
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
+    publish:
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
+            - name: Log in to Docker Hub
+              uses: docker/login-action@v3
+              with:
+                username: ${{ secrets.DOCKERHUB_USERNAME }}
+                password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build and export static site
-        run: npm run build
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./out
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-
-       
-       
+            - name: Build and push Docker image
+              uses: docker/build-push-action@v6
+              with:
+                context: .
+                file: docker/backend.Dockerfile
+                push: true
+                tags: devguurl/stamp-calculator:latest
