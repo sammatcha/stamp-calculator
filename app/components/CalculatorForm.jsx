@@ -20,7 +20,6 @@ export default function Form(){
         if (typeof calculated === 'string'){
             setError(calculated)
             setResults('')
-            //  console.log("error", calculated)
             return;
            
         }
