@@ -4,7 +4,7 @@ const compression = require('compression');
 const cors = require('cors');
 const routes = require('./routes/usps');
 const postageController = require('./controllers/postageController');
-// const pinoHttp = require('pino-http');
+const pinoHttp = require('pino-http');
 
 const app = express();
 
@@ -42,7 +42,7 @@ app.options(/.*/, cors(corsOptions)); // Handle preflight requests
 
 app.use(helmet());                 // sensible security headers
 app.use(compression());            // gzip responses
-// app.use(pinoHttp())        
+app.use(pinoHttp())        
 
 app.use(express.json({ limit: '1mb' })); // prevent huge bodies
 
@@ -71,12 +71,9 @@ app.use((err, req, res, _next) => {
 
 // ---- Start & graceful shutdown ----
 const server = app.listen(PORT, '0.0.0.0', () => {
-  // console.log(`API listening on: ${PORT}`);
-  // console.log(`cors allowed origin:`, [...allowedOrigins]);
 });
 
 const shutdown = (sig) => () => {
-  // console.log(`\n${sig} received, shutting down...`);
   server.close(() => process.exit(0));
   setTimeout(() => process.exit(1), 10000); // hard timeout
 };
