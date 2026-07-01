@@ -58,15 +58,17 @@ export default function Form(){
     }
 
     return(
-        <form method= 'post' onSubmit={handleSubmit} className="w-full mx-auto flex flex-col justify-center items-center relative z-10   ">
-            <div className='max-w-5xl flex flex-col lg:flex-row gap-4 md:gap-6 lg:gap-8 w-full items-center md:items-stretch  ' >
+        <form 
+        method='post' 
+        onSubmit={handleSubmit} 
+        className="w-full mx-auto flex flex-col justify-center items-center relative z-10"
+        >
+            <div className='max-w-5xl flex flex-col lg:flex-row gap-4 md:gap-6 lg:gap-8 w-full items-center md:items-stretch'>
                     <div className="dark:bg-formBox1 dark:shadow-2xl dark:outline-outlineColor dark:outline-2 dark:outline-offset-2 flex flex-col max-w-md sm:max-w-xl lg:max-w-2xl 2xl:max-w-3xl dark:text-slate-700 dark:border-transparent pb-20
-                     rounded shadow-xl  bg-white/60 hover:shadow-lg dark:hover:shadow-indigo-600/50 w-full lg:w-1/2  border-gray-300 border ">
-                    
-                        <section className='flex flex-col justify-center items-center space-y-5 font-nunitoSans '>
+                     rounded shadow-xl bg-white/60 hover:shadow-lg dark:hover:shadow-indigo-600/50 w-full lg:w-1/2 mx-auto lg:mx-0 border-gray-300 border ">
+                        <section className='flex flex-col justify-center items-center space-y-5 font-nunitoSans'>
                             <label className='text-lg md:text-xl lg:text-2xl font-bold mt-4 sm:mt-10 dark:text-white text-uspsBlue'>
                                Letter Weight
-                
                             </label>
                                 <div className='flex'>
                                     <input className="text-lg md:text-xl lg:text-2xl bg-transparent border-b text-slate-800 placeholder-slate-500  dark:text-gray-500 px-1 dark:bg-duskyBlue border-uspsBlue/60 dark:placeholder-gray-400 text-center " 
@@ -76,16 +78,23 @@ export default function Form(){
                                     onChange ={(e)=> setUserInput(e.target.value)}
                                     placeholder="weight" 
                                     />
-                                    <div >
-                                        <h2 className='text-xl md:text-2xl text-slate-800  dark:text-gray-500'>oz</h2>
+                                    <div>
+                                        <h2 className='text-xl md:text-2xl text-slate-800  dark:text-gray-500'>
+                                            oz
+                                        </h2>
                                     </div>
                                 </div>
                             <div className='relative flex space-x-3 px-3 md:px-7 text-slate-700  dark:text-white'>
-                                <input type='checkbox' checked={isChecked} onChange={handleCheckboxChange} className='cursor-pointer ' />
+                                <input 
+                                type='checkbox' 
+                                checked={isChecked} 
+                                onChange={handleCheckboxChange} 
+                                className='cursor-pointer '
+                                />
                                     Is envelope rigid or 1/4 inch thick?
-                    
-                            
-                                    <CircleQuestionMark className='cursor-help w-4 ml-1 md:ml-5' onClick={(e) => {handleToolTipClick(e)}}
+                                    <CircleQuestionMark 
+                                    className='cursor-help w-4 ml-1 md:ml-5' 
+                                    onClick={(e) => {handleToolTipClick(e)}}
                                     />
                                     {showToolTip && (
                                         <div className='absolute top-full left-1/2 -translate-x-1/2 mt-2
@@ -103,7 +112,7 @@ export default function Form(){
                             </button>
                         </section>      
                     </div>
-                <div className='flex flex-col items-center justify-start w-full lg:w-1/2 hover:shadow-lg bg-white/60 border-gray-300 border dark:bg-formBox1 dark:shadow-2xl dark:outline-outlineColor dark:outline-2 dark:outline-offset-2 dark:border-transparent rounded shadow-xl space-y-5 dark:hover:shadow-indigo-600/50'>      
+                <div className='flex flex-col items-center justify-start w-full max-w-md sm:max-w-xl lg:max-w-2xl 2xl:max-w-3xl lg:w-1/2 mx-auto lg:mx-0 hover:shadow-lg bg-white/60 border-gray-300 border dark:bg-formBox1 dark:shadow-2xl dark:outline-outlineColor dark:outline-2 dark:outline-offset-2 dark:border-transparent rounded shadow-xl space-y-5 dark:hover:shadow-indigo-600/50'>      
                     <div className='mt-5 flex border-b'>
                         {results?.breakdown && (
                             results?.breakdown.map((item, index) => {
