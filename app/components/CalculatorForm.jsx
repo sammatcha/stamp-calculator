@@ -21,11 +21,9 @@ export default function Form(){
             setError(calculated)
             setResults('')
             return;
-           
         }
         setError('')
         setResults(calculated)
-        
     try{
          const metered = await fetch('https://usps.dangnas.cloud/api/postage', {
             method: "POST",
@@ -43,7 +41,6 @@ export default function Form(){
         console.error('API call failed:', error);
         setMeteredResult({ error: error.message || 'Failed to fetch metered pricing from USPS API' });
     }
-   
      setResults(calculated); 
     } 
 
@@ -129,8 +126,7 @@ export default function Form(){
                                     Array.from({length: item.quantity}).map((_, i) => (
                                     <img src={src} alt={item.type} key={`${index}-${i}`} className="size-30 mx-2 object-contain bg-beige " />
                                 ))
-                              
-                                )})
+                            )})
                         )}
                  
                     </div>
@@ -138,16 +134,15 @@ export default function Form(){
                     <div className='space-y-3 text-center pb-6 md:pb-8 max-w-lg mx-auto items-center flex '>
                         {error ? (
                             <div className='flex flex-col text-red-800 dark:text-red-400 text-center items-center justify-center text-lg lg:text-xl '><span className='inline-flex items-center justify-center mb-5'>
-                                <XIcon className='w-15 '/> Error
+                                <XIcon className='w-15'/> Error
                                 </span>
                                 {error}
                             </div>
                         ) : (
-                           
-                              results.total ? (
+                            results.total ? (
                              <div className='flex flex-col gap-2'>
                                 <div className=' border rounded dark:bg-gradient-to-bl dark:from-vibrantBlue dark:to-80% dark:to-skyBlue w-full px-4 py-2 md:px-15 md:py-1 bg-uspsBlue '>
-                                    <p className=' text-white text-base md:text-lg font-nunitoSans flex flex-col font-bold'>Standard Total <span className='text-lg md:text-2xl font-extrabold'>${roundedTotal}</span></p>
+                                    <p className=' text-white text-base md:text-lg font-nunitoSans flex flex-col font-bold'>Standard Total <span className='text-lg md:text-2xl font-extrabold'>${roundedTotal.toFixed(2)}</span></p>
                                 </div>
                                 <div
                                     className={
@@ -158,7 +153,14 @@ export default function Form(){
                                     }
                                 >
                                     {meteredResult?.error ? (
-                                        <p className='text-base text-red-300 font-nunitoSans flex flex-col font-bold dark:text-red-400'>Metered Price <span className='text-sm font-normal'>{meteredResult.error}</span></p>
+                                        <>
+                                            <p className='text-base text-red-300 font-nunitoSans flex flex-col font-bold dark:text-red-400'>
+                                                Metered Price 
+                                            </p>
+                                            <p className='text-sm font-nunitoSans font-normal text-red-300/80 dark:text-red-400/80 flex items-center gap-1'> 
+                                                <span className='text-lg font-normal'>Oop, temporarily down - brb working on it!</span>
+                                            </p>
+                                        </>
                                     ) : meteredResult?.metered?.totalBasePrice ? (
                                         <p className='text-base text-slate-200 font-nunitoSans flex flex-col font-bold dark:text-white'>Metered Price <span className='text-slate-200 dark:text-white font-extrabold'>${meteredResult.metered.totalBasePrice}</span></p>
                                     ) : null}
