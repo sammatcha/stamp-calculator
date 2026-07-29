@@ -28,7 +28,6 @@ const letterSearch = async (weight, nonMachinable) => {
         });
         
         return response.data;
-        
     } catch(error) {
         // Re-throw with more context
         if (error.response) {

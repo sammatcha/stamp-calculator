@@ -9,11 +9,10 @@ export default function MainPage(){
       <div className="flex justify-end">
         <ThemeToggle/>
       </div>
-      
          <h1 className="max-w-xl lg:max-w-5xl mx-auto w-full text-4xl md:text-5xl lg:text-6xl mb-8 md:mb-16 text-center font-caveatBrush dark:font-bold dark:text-transparent bg-clip-text text-gray-800 tracking-wide
-       dark:bg-linear-to-r dark:from-skyBlue dark:to-vibrantBlue">
-          Stamp Calculator
-        </h1>
+            dark:bg-linear-to-r dark:from-skyBlue dark:to-vibrantBlue">
+            Stamp Calculator
+          </h1>
     
         <Form/>
     </div>
