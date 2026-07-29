@@ -15,15 +15,13 @@ const getAuthToken = async()=>{
             {
                 headers:
                 {
-                    "Content-Type" : "application/json"
+                    "Content-Type" : "application/x-www-form-urlencoded"
                 }
             })
            cachedToken = token.data.access_token;
            tokenExpiry = Date.now() + (token.data.expires_in * 1000)
            return cachedToken;
-
         }
-        
     }catch(error){
         throw error;
     }

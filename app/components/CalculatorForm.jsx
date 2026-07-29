@@ -25,7 +25,7 @@ export default function Form(){
         setError('')
         setResults(calculated)
     try{
-         const metered = await fetch('https://usps.dangnas.cloud/api/postage', {
+         const metered = await fetch('https://usps.dkhome.cloud/api/postage', {
             method: "POST",
             headers : {
                 "Content-Type":"application/json"
