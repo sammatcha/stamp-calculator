@@ -15,7 +15,7 @@ const getAuthToken = async()=>{
             {
                 headers:
                 {
-                    "Content-Type" : "application/x-www-form-urlencoded"
+                    "Content-Type" : "application/json"
                 }
             })
            cachedToken = token.data.access_token;
